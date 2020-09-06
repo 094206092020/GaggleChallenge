@@ -121,11 +121,15 @@ namespace Prakash_GaggleChallenge.Controllers
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
-            string webRootPath = _hostEnvironment.WebRootPath;
-            var imagePath = Path.Combine(webRootPath, objFromDb.ImageUrl.TrimStart('\\'));
-            if (System.IO.File.Exists(imagePath))
+
+            if (!string.IsNullOrEmpty(objFromDb.ImageUrl))
             {
-                System.IO.File.Delete(imagePath);
+                string webRootPath = _hostEnvironment.WebRootPath;
+                var imagePath = Path.Combine(webRootPath, objFromDb.ImageUrl.TrimStart('\\'));
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
             }
             await _unitOfWork.Product.RemoveAsync(objFromDb);
             _unitOfWork.Save();
