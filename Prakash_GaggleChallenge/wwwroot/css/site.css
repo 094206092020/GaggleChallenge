@@ -69,3 +69,19 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+.item {
+    position: relative;
+    padding-top: 20px;
+    display: inline-block;
+}
+
+.notify-badge {
+    position: absolute;
+    right: -20px;
+    top: 10px;
+    text-align: center;
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    padding: 5px 10px;
+    font-size: 20px;
+}

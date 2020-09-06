@@ -3,21 +3,32 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
 @if (Model.Count() > 0)
 {
-    <div class="row">
-        <div class="row row-cols-1">
-            @foreach (var product in Model)
-            {
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100">
-                        @if (string.IsNullOrWhiteSpace(product.ImageUrl))
-                        {
+
+    <div class="row row-cols-1">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 item">
+                    @if (!product.Availability)
+                    {
+                        <span class="notify-badge bg-danger">Out of Stock</span>
+                    }
+                    else
+                    {
+                        <span class="notify-badge bg-success">In Stock</span>
+                    }
+                    @if (string.IsNullOrWhiteSpace(product.ImageUrl))
+                    {
+
                         <img src="~/images/noimage.png" class="card-img-top p-2">
-                        }
-                        else
-                        { <img src="@product.ImageUrl" class="card-img-top p-2">
-                        }
+                    }
+                    else
+                    {
+                        <img src="@product.ImageUrl" class="card-img-top p-2">
+                    }
 
                     <div class="card-body">
                         <h5 class="card-title">@product.Name</h5>
@@ -28,13 +39,13 @@
                             </div>
                         </div>
                     </div>
-                    </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
+
 }
-else 
+else
 {
     <h3>Welcome..</h3>
 }
