@@ -1,0 +1,124 @@
+﻿@model Library.Models.dbo.Product
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Add New Product";
+}
+<div class="card">
+    <div class="card-header">
+        Product
+        <a class="btn btn-secondary btn-sm float-lg-right d-inline-flex" asp-action="Index" title="Back to list">Back to List</a>
+    </div>
+    <div class="card-body">
+        <form method="post" asp-action="Upsert" asp-controller="Product" enctype="multipart/form-data">
+            @if (Model.Id != 0)
+            {
+                title = "Edit Product";
+                <input type="hidden" asp-for="@Model.Id" />
+            }
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Name"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Description"></label>
+                        </div>
+                        <div class="col-8">
+                            <textarea asp-for="Description" class="form-control"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="ImageUrl"></label>
+                        </div>
+                        <div class="col-8">
+                            <input type="file" name="files" class="form-control-file" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="SKU"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="SKU" class="form-control" />
+                            <span asp-validation-for="SKU" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Price"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Qty"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Qty" class="form-control" />
+                            <span asp-validation-for="Qty" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Availability"></label>
+                        </div>
+                        <div class="col-8">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" asp-for="Availability" class="custom-control-input" id="customControlAutosizing">
+                                <label class="custom-control-label" for="customControlAutosizing">Is in Stock ? </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-8 offset-4">
+                            @if (Model.Id != 0)
+                            {
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-primary form-control">Update</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-primary form-control">Add</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model.ImageUrl" class="img-thumbnail rounded float-right" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+}

@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        Product
+        <a class="btn btn-outline-primary btn-sm float-lg-right d-inline-flex" asp-action="Upsert" title="Add New Record">Add New</a>
+    </div>
+    <div class="card-body">
+        <table id="tblData" class="table table-bordered table-sm" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>SKU</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Availability</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/product.js"></script> }
